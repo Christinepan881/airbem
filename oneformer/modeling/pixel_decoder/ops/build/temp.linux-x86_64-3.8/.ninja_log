@@ -1,0 +1,7 @@
+# ninja log v5
+3	16873	1679801343	/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/build/temp.linux-x86_64-3.8/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/src/cpu/ms_deform_attn_cpu.o	c046e42c114e272f
+2	29519	1679801356	/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/build/temp.linux-x86_64-3.8/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/src/vision.o	a68ed79da1a2fcd7
+3	42666	1679801369	/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/build/temp.linux-x86_64-3.8/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/src/cuda/ms_deform_attn_cuda.o	cedda5677c9c68c
+1489	10617	1680907321	/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/build/temp.linux-x86_64-3.8/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/src/cpu/ms_deform_attn_cpu.o	c602bc5ead4f0751
+1489	24560	1680907335	/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/build/temp.linux-x86_64-3.8/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/src/vision.o	711dcfa4a29d95f3
+1490	39970	1680907351	/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/build/temp.linux-x86_64-3.8/home/cpan14/OneFormer/oneformer/modeling/pixel_decoder/ops/src/cuda/ms_deform_attn_cuda.o	d9cb586f4311a77b
