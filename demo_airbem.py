@@ -47,11 +47,6 @@ cfgf = "/home/cpan14/OneFormer/outputs/train_local/new_1node_8bs/config.yaml"
 
 task = "semantic"
 
-# img_path = "/home/cpan14/datasets/AirBEM/ir_dir/train/FLIR0027.jpg"
-# img_path = "/home/cpan14/datasets/AirBEM/ir_dir/train/FLIR0696.jpg"
-# img_path = "/home/cpan14/OneFormer/demo/semantic_inference/ir_demo.png"
-# img_path = "/home/cpan14/datasets/AirBEM/ir_dir/train/FLIR2801.jpg"
-# img_path = "/home/cpan14/datasets/AirBEM/ir_dir/train/FLIR3119.jpg"
 img_path = "/home/cpan14/OneFormer/demo/semantic_inference/DJI_20220823105003_0023_T.JPG"
 
 save_path = "/home/cpan14/OneFormer/outputs/demo/{}.jpg".format(time_ns())
@@ -59,9 +54,6 @@ save_path = "/home/cpan14/OneFormer/outputs/demo/{}.jpg".format(time_ns())
 SWIN_CFG_DICT = {"cityscapes": "configs/cityscapes/oneformer_swin_large_IN21k_384_bs16_90k.yaml",
             "coco": "configs/coco/oneformer_swin_large_IN21k_384_bs16_100ep.yaml",
             "ade20k": "configs/ade20k/oneformer_swin_large_IN21k_384_bs16_160k.yaml",
-                # "airbem": "configs/airbem/oneformer_swin_large_bs16_160k_test.yaml",
-                # "airbem": "configs/airbem/oneformer_swin_large_bs16_160k_2bs.yaml",
-                # "airbem": "outputs/train_local/new_1node_8bs_50q/config.yaml",
                 "airbem": cfgf,
                 }
 
