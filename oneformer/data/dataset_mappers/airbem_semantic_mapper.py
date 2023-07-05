@@ -56,7 +56,8 @@ class AirBEMSemanticMapper:
         mode = "training" if is_train else "inference"
         logger.info(f"[{self.__class__.__name__}] Augmentations used in {mode}: {augmentations}")
 
-        self.class_names = self.meta.thing_classes
+        # self.class_names = self.meta.thing_classes
+        self.class_names = self.meta.stuff_classes
         self.text_tokenizer = Tokenize(SimpleTokenizer(), max_seq_len=max_seq_len)
         self.task_tokenizer = Tokenize(SimpleTokenizer(), max_seq_len=task_seq_len)
     
@@ -211,6 +212,7 @@ class AirBEMSemanticMapper:
                 num_class_obj[name] = 0
 
             task = "The task is semantic"
+            # print(instances.gt_classes, num_class_obj)
             text = self._get_texts(instances.gt_classes, num_class_obj)
 
             dataset_dict["instances"] = instances

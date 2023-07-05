@@ -7,6 +7,14 @@
 OneFormer Training Script.
 
 This script is a simplified version of the training script in detectron2/tools.
+
+wandb login
+
+python train_net.py --dist-url 'tcp://127.0.0.1:50163' \
+    --num-gpus 1 \
+    --config-file configs/airbem/oneformer_swin_large_bs16_160k_2bs.yaml \
+    OUTPUT_DIR outputs/train_local WANDB.NAME train_local
+
 """
 import copy
 import itertools

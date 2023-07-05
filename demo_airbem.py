@@ -1,5 +1,5 @@
 ######
-#@title 1. Import Libraries and other Utilities
+#@title 3. Import Libraries and other Utilities
 ######
 # Setup detectron2 logger
 import detectron2
@@ -34,24 +34,37 @@ from PIL import Image
 from time import time_ns
 
 ######
-#@title 2. Specify parameters based on your own env
+#@title 4. Define helper functions
 ######
-use_swin = True #@param
-ckpt = "/home/cpan14/OneFormer/outputs/train_airbem/2023-04-16-113221-709/model_final.pth" #@param
-device_name = 'cuda' #@param
+device_name = 'cuda' #cpu
 device = torch.device(device_name)
-img_path = "/home/cpan14/datasets/AirBEM/ir_dir/train/FLIR0027.jpg" #@param
-task = "semantic" #@param
-save_path = "/home/cpan14/OneFormer/outputs/demo/{}.jpg".format(time_ns()) #@param
+cpu_device = torch.device('cpu')
+
+use_swin = True
+
+ckpt = "/home/cpan14/OneFormer/outputs/train_local/new_1node_8bs/model_final.pth"
+cfgf = "/home/cpan14/OneFormer/outputs/train_local/new_1node_8bs/config.yaml"
+
+task = "semantic"
+
+# img_path = "/home/cpan14/datasets/AirBEM/ir_dir/train/FLIR0027.jpg"
+# img_path = "/home/cpan14/datasets/AirBEM/ir_dir/train/FLIR0696.jpg"
+# img_path = "/home/cpan14/OneFormer/demo/semantic_inference/ir_demo.png"
+# img_path = "/home/cpan14/datasets/AirBEM/ir_dir/train/FLIR2801.jpg"
+# img_path = "/home/cpan14/datasets/AirBEM/ir_dir/train/FLIR3119.jpg"
+img_path = "/home/cpan14/OneFormer/demo/semantic_inference/DJI_20220823105003_0023_T.JPG"
+
+save_path = "/home/cpan14/OneFormer/outputs/demo/{}.jpg".format(time_ns())
+
 SWIN_CFG_DICT = {"cityscapes": "configs/cityscapes/oneformer_swin_large_IN21k_384_bs16_90k.yaml",
             "coco": "configs/coco/oneformer_swin_large_IN21k_384_bs16_100ep.yaml",
             "ade20k": "configs/ade20k/oneformer_swin_large_IN21k_384_bs16_160k.yaml",
-                "airbem": "configs/airbem/oneformer_swin_large_bs16_160k_test.yaml",} #@param
+                # "airbem": "configs/airbem/oneformer_swin_large_bs16_160k_test.yaml",
+                # "airbem": "configs/airbem/oneformer_swin_large_bs16_160k_2bs.yaml",
+                # "airbem": "outputs/train_local/new_1node_8bs_50q/config.yaml",
+                "airbem": cfgf,
+                }
 
-######
-#@title 3. Define helper functions
-######
-cpu_device = torch.device('cpu')
 def setup_cfg(dataset, model_path, use_swin):
     # load config from file and command-line arguments
     cfg = get_cfg()
@@ -115,15 +128,14 @@ TASK_INFER = {"panoptic": panoptic_run,
 
 
 ######
-#@title 4. Initialize Model
+#@title A. Initialize Model
 ######
-# download model checkpoint
 import os
 import subprocess
 predictor, metadata = setup_modules("airbem", ckpt, use_swin)
 
 ######
-#@title 5. Display Sample Image. You can modify the path and try your own images!
+#@title B. Display Sample Image. You can modify the path and try your own images!
 ######
 img = cv2.imread(img_path)
 img = imutils.resize(img, width=640)
@@ -131,15 +143,9 @@ img = imutils.resize(img, width=640)
 
 
 ######
-#@title 6. Run Inference (CPU/CUDA)
+#@title C. Run Inference (CPU/CUDA)
 #@markdown Specify the **task**. `Default: panoptic`. Execution may take upto 2 minutes
-######
-
-##############################
 out = TASK_INFER[task](img, predictor, metadata).get_image()
 # cv2_imshow(out[:, :, ::-1])
 out_save = Image.fromarray(out[:, :, ::-1])
 out_save.save(save_path)
-
-
-
